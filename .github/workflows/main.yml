@@ -1,4 +1,4 @@
-name: Update Azure VM
+name: Releasing
 
 on:
   push:
@@ -20,7 +20,7 @@ jobs:
         az login --identity --allow-no-subscriptions
 
         # Replace 'resource_group', 'vm_name', and 'path/to/repo/on/vm' with your actual values
-        az vm run-command invoke -g resource_group -n vm_name --command-id RunShellScript --scripts "cd path/to/repo/on/vm && git pull"
+        az vm run-command invoke -g Portfolio_group -n Portfolio --command-id RunShellScript --scripts "cd /Build && git pull"
 
       env:
         AZURE_CREDENTIALS: ${{ secrets.AZURE_CREDENTIALS }}
