@@ -14,13 +14,11 @@ jobs:
       uses: actions/checkout@v2
 
     - name: Update Azure VM
-      run: |
-        # Log in using the Azure credentials
-        echo ${{ secrets.AZURE_CREDENTIALS }} > /tmp/azure_credentials.json
-        az login --identity --allow-no-subscriptions
-
-        # Replace 'resource_group', 'vm_name', and 'path/to/repo/on/vm' with your actual values
-        az vm run-command invoke -g Portfolio_group -n Portfolio --command-id RunShellScript --scripts "cd /Build && git pull"
-
-      env:
-        AZURE_CREDENTIALS: ${{ secrets.AZURE_CREDENTIALS }}
+    - uses: azure/login@v1
+      with:
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
+        allow-no-subscriptions: true
+        
+    - name: Update Files in VM
+    - run: |
+        az vm run-command invoke -g portfolio_group -n Portfolio --command-id RunShellScript --scripts "cd /home/jastagar/Build && sudo git pull"
