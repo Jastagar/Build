@@ -1,0 +1,23 @@
+name: DEPLOYING
+
+on:
+  push:
+    branches:
+      - main  # Change this to the appropriate branch name
+
+jobs:
+  update-vm:
+    runs-on: ubuntu-latest  # Change this to the appropriate runner environment
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Deploying
+      run: |
+        VM_USERNAME=jastagar
+        VM_HOST=20.204.173.50
+        REPO_PATH=/home/jastagar/Build
+        
+        # SSH into the VM and update the repository clone
+        ssh $VM_USERNAME@$VM_HOST "cd $REPO_PATH && git pull"
