@@ -1,23 +1,26 @@
-name: DEPLOYING
+name: Update Azure VM
 
 on:
   push:
     branches:
-      - main  # Change this to the appropriate branch name
+      - main
 
 jobs:
   update-vm:
-    runs-on: ubuntu-latest  # Change this to the appropriate runner environment
+    runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout repository
+    - name: Checkout code
       uses: actions/checkout@v2
 
-    - name: Deploying
+    - name: Update Azure VM
       run: |
-        VM_USERNAME=jastagar
-        VM_HOST=20.204.173.50
-        REPO_PATH=/home/jastagar/Build
-        
-        # SSH into the VM and update the repository clone
-        ssh $VM_USERNAME@$VM_HOST "cd $REPO_PATH && git pull"
+        # Log in using the Azure credentials
+        echo ${{ secrets.AZURE_CREDENTIALS }} > /tmp/azure_credentials.json
+        az login --identity --allow-no-subscriptions
+
+        # Replace 'resource_group', 'vm_name', and 'path/to/repo/on/vm' with your actual values
+        az vm run-command invoke -g resource_group -n vm_name --command-id RunShellScript --scripts "cd path/to/repo/on/vm && git pull"
+
+      env:
+        AZURE_CREDENTIALS: ${{ secrets.AZURE_CREDENTIALS }}
