@@ -1,4 +1,4 @@
-import{r as C,j as e,u as g}from"./index-217dee32.js";const f="/assets/agritech-96bbb33f.png",x="/assets/fairsplit-3e21871f.png";const P="/assets/filesharer-a1411649.png",A=11.4,v=[{id:"123456765111",name:"AgriTech",image:f,link:"https://agritech.jastagar.tech",subtitle:"Crowd Funding for Farmers",techStack:["ReactJs","NodeJs","ExpressJs","MongoDB","BlockChain","Google Cloud"],description:`
+import{r as C,j as e,u as g}from"./index-c9235bb3.js";const f="/assets/agritech-96bbb33f.png",x="/assets/fairsplit-3e21871f.png";const P="/assets/filesharer-a1411649.png",A=11.4,v=[{id:"123456765111",name:"AgriTech",image:f,link:"https://agritech.jastagar.tech",subtitle:"Crowd Funding for Farmers",techStack:["ReactJs","NodeJs","ExpressJs","MongoDB","BlockChain","Google Cloud"],description:`
       Crowd funding platform for farmers.
       Transactions that are made secure using Blockchain.
       Ecommerce facilities to save time.
